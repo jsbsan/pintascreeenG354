@@ -6,7 +6,9 @@ FMain=[1713]
 Count=0
 
 [DebugWindow]
-Count=0
+Count=2
+DebugWindow[1]="tiempos"
+DebugWindow[2]="Arraylinea"
 
 [DebugWindow/ArrayCoord]
 Geometry=[96,39,311,653]
@@ -64,6 +66,9 @@ Geometry=[371,26,210,210]
 
 [DebugWindow/Last]
 Geometry=[195,232,227,419]
+
+[DebugWindow/ListaTmpArrayDibujos]
+Geometry=[-1,24,215,634]
 
 [DebugWindow/Me]
 Geometry=[2,26,722,675]
@@ -195,7 +200,7 @@ Geometry=[14,40,415,495]
 Geometry=[2,26,210,210]
 
 [DebugWindow/tiempos]
-Geometry=[-1,24,210,210]
+Geometry=[0,24,210,799]
 
 [DebugWindow/timerMovimiento]
 Geometry=[-1,24,210,210]
@@ -213,9 +218,8 @@ Geometry=[57,34,210,210]
 Geometry=[18,20,210,781]
 
 [OpenFile]
-Active=1
 File[1]=".src/FMain.form"
-File[2]=".src/FMain.class:1736.21"
+File[2]=".src/FMain.class:1700.2"
 File[3]=".src/rectangulo.class:326.33"
 File[4]=".src/RectPunteado.class:32.0"
 File[5]=".src/elipse.class:300.33"
@@ -226,13 +230,14 @@ File[9]=".src/Propiedades/FormCuadroPropiedades.class:356.109"
 File[10]=".src/Propiedades/ButtonBoxDobleTag.class:0.19"
 File[11]=".src/FormEditarTexto.form"
 File[12]=".src/FormEditarTexto.class:22.19"
-File[13]=".src/ModuleAbrirGuardar.module:130.81"
+Active=13
+File[13]=".src/ModuleAbrirGuardar.module:136.0"
 File[14]=".src/linea.class:34.0"
 File[15]=".src/ManoAlzadaFlecha.class:69.0"
 File[16]=".src/ManoAlzada.class:30.0"
 File[17]=".src/Mmain.module:22.2"
 File[18]=".src/FormAcercaDE.form"
-File[19]=".src/FormAcercaDE.class:92.70"
+File[19]=".src/FormAcercaDE.class:204.2"
 File[20]=".src/Dibujo.class:53.0"
 File[21]=".src/Texto.class:122.27"
 File[22]=".src/Subrayador.class:193.0"
@@ -250,8 +255,11 @@ File[33]=".src/FormAyuda.form"
 File[34]=".src/ModuleComun.module:130.58"
 File[35]=".src/ModuleSonido.module:0.20"
 File[36]="lapiz.png"
-File[37]=".src/ManoAlzadaMov.class:95.35"
-Count=37
+File[37]=".src/ManoAlzadaMov.class:251.41"
+File[38]=".src/FormFondo.class:191.23"
+File[39]=".src/FormFondo.form"
+File[40]=".src/formularioAndando.form"
+Count=40
 
 [Watches]
 Count=1

@@ -91,8 +91,8 @@ Public Sub dibuja()
       
     Next
     
-    '  redibujar de nuevo si pasa 1 segundo...
-    Print a
+    '  redibujar de nuevo si llega al final del array
+    
     If a > ArrayCoord.max - 1 Then 
       InicioDibujando = Now
     Endif
@@ -229,7 +229,7 @@ Public Sub guardar() As String
   Dim a As Integer
   Dim contenido As String
   
-  contenido = "dibujo|ManoAlzada|"
+  contenido = "dibujo|ManoAlzadaMov|" 'añado palabra clave ManoAlzadaMov
   contenido &= Str$(Super.getTamano()) & "|"
   contenido &= Str$(Me.getColor()) & "|"
   contenido &= Str$(hsemitransparente) & "|"
@@ -238,6 +238,7 @@ Public Sub guardar() As String
   For a = 0 To ArrayCoord.Max
     contenido &= Str$(ArrayCoord[a].x) & "|"
     contenido &= Str$(ArrayCoord[a].y) & "|"
+    contenido &= Str$(tiempos[a]) & "|" 'añadido para guardar los tiempos
   Next
   Return contenido
   
@@ -248,15 +249,17 @@ Public Function abrir(Arraylinea As String[]) As Boolean
   Dim a As Integer
   Dim pto As Point
   
-  If Arraylinea[1] = "ManoAlzada" Then
+  If Arraylinea[1] = "ManoAlzadaMov" Then
     Super.Settamano(Val(Arraylinea[2]))
     Super.SetColor(Val(Arraylinea[3]))
     hrelleno = Val(Arraylinea[4])
     hsemitransparente = Val(Arraylinea[5])
     ArrayCoord.Clear()
-    For a = 6 To Arraylinea.max - 1 Step 2
+    tiempos.Clear()
+    For a = 6 To Arraylinea.max - 1 Step 3 'leo de 3 en 3 (x,y, y tiempo)
       pto = New Point(Arraylinea[a], Arraylinea[a + 1])
       ArrayCoord.Add(pto)
+      tiempos.Add(Arraylinea[a + 2])
     Next
     
     Return True

@@ -189,7 +189,7 @@ Public Sub ButtonCarpeta_Click()
   
   rutaImagenes = File.Load(User.home & "/.config/user-dirs.dirs")
   rutaImagenes = ModuleComun.Between(rutaImagenes, "XDG_PICTURES_DIR=\"$HOME/", "\"")
-  '  Print rutaImagenes
+  Print rutaImagenes
   Dialog.Filter = ["*.png;*.jpg;*.jpeg", "ficheros de imagenes"]
   Dialog.Path = User.home & "/" & rutaImagenes
   If Dialog.OpenFile() Then

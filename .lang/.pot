@@ -1,0 +1,523 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2002-11-01 04:27+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .project:1
+msgid "pintaScreen"
+msgstr ""
+
+#: .project:2
+msgid ""
+"Pinta, señala, marca, escribe en la pantalla para mejorar tus "
+"explicaciones.\n"
+"Con teclado Virtual. Toma de capturas con retardo de 5 segundos. Traducido "
+"al gallego, portugues y al ingles."
+msgstr ""
+
+#: FMain.form:75
+msgid "deje pulsado el botón del ratón para desplazar barra de herramientas"
+msgstr ""
+
+#: FMain.form:81
+msgid "Configurar"
+msgstr ""
+
+#: FMain.form:88
+msgid "Minimiza el dibujo"
+msgstr ""
+
+#: FMain.form:95
+msgid "Elija el color para dibujar"
+msgstr ""
+
+#: FMain.form:100
+msgid "grosor del trazo"
+msgstr ""
+
+#: FMain.form:105
+msgid "Seleccionar objetos para mover"
+msgstr ""
+
+#: FMain.form:111
+msgid "Propiedades del objeto"
+msgstr ""
+
+#: FMain.form:117
+msgid "Borrar todos los dibujos hechos"
+msgstr ""
+
+#: FMain.form:124
+msgid "Borrar último elemento dibujado"
+msgstr ""
+
+#: FMain.form:130
+msgid "Marcador. Tecla \"M\""
+msgstr ""
+
+#: FMain.form:136
+msgid "Dibujar a mano alzada. Tecla \"A\""
+msgstr ""
+
+#: FMain.form:142
+msgid "Dibuja a mano alzada pero añade una fecla final"
+msgstr ""
+
+#: FMain.form:158
+msgid "Dibujar una linea. Tecla \"L\""
+msgstr ""
+
+#: FMain.form:164
+msgid "Dibujar una flecha. Tecla \"F\""
+msgstr ""
+
+#: FMain.form:170
+msgid "Dibujar una eclipse. Tecla \"E\""
+msgstr ""
+
+#: FMain.form:176
+msgid "Dibujar un rectangulo. Tecla \"R\""
+msgstr ""
+
+#: FMain.form:182
+msgid "Escribir texto. Tecla \"T\""
+msgstr ""
+
+#: FMain.form:189
+msgid "Mover un texto"
+msgstr ""
+
+#: FMain.form:195
+msgid "Seleccione un texto y editelo. Tecla \"Y\""
+msgstr ""
+
+#: FMain.form:201
+msgid "Circulo de color con un contador interno"
+msgstr ""
+
+#: FMain.form:207
+msgid "Dibuja un rectangulo y aclara la zona. Tecla \"P\""
+msgstr ""
+
+#: FMain.form:213
+msgid ""
+"Dibuja un icono, si pulsa el botón derecho del ratón, mostrará un formulario "
+"para elegir el icono."
+msgstr ""
+
+#: FMain.form:219
+msgid "activar ventana webcam"
+msgstr ""
+
+#: FMain.form:226
+msgid ""
+"Tecla Z: Tomar zona de la pantalla y guardarla al disco duro. Si cancela, se "
+"guarda en el portapapeles."
+msgstr ""
+
+#: FMain.form:232
+msgid "Cambiar Fondo"
+msgstr ""
+
+#: FMain.form:239
+msgid "Minimizar y tomar captura en 5 seg"
+msgstr ""
+
+#: FMain.form:246
+msgid "Cambio a Barra Horizontal o Barra Vertical"
+msgstr ""
+
+#: FMain.form:253
+msgid "Blurring"
+msgstr ""
+
+#: FMain.form:260
+msgid "Parar de dibujar"
+msgstr ""
+
+#: FMain.form:267
+msgid "Salir de la aplicación"
+msgstr ""
+
+#: FMain.form:275
+msgid "Tecla S: Tomar captura de la pantalla"
+msgstr ""
+
+#: FMain.form:285
+msgid "Escriba el texto...."
+msgstr ""
+
+#: FMain.form:307
+msgid "mover barra de texto"
+msgstr ""
+
+#: FMain.form:326
+msgid "deje pulsado aqui el boton del ratón y desplace la ventana"
+msgstr ""
+
+#: FMain.form:327
+msgid " Webcam"
+msgstr ""
+
+#: FMain.class:270
+msgid "¿realmente desea borrar todo lo dibujado?"
+msgstr ""
+
+#: FMain.class:270
+msgid "Si, Borralo"
+msgstr ""
+
+#: FMain.class:270
+msgid "No, cancela la orden"
+msgstr ""
+
+#: FMain.class:1547 FormFondo.class:209
+msgid "Problemas para obtener la imagen de la camara web,"
+msgstr ""
+
+#: FMain.class:1547 FormFondo.class:209
+msgid " pruebe con otra ruta de dispositivo /dev/video1, /dev/video2,"
+msgstr ""
+
+#: FormAcercaDE.form:58
+msgid "Aceptar y Salir de configuración"
+msgstr ""
+
+#: FormAcercaDE.form:64
+msgid "Icono Chincheta (elija el icono de carpeta para elegir imagen):"
+msgstr ""
+
+#: FormAcercaDE.form:82
+msgid "PintaScreen"
+msgstr ""
+
+#: FormAcercaDE.form:87 fmensaje.form:16
+msgid "Label1"
+msgstr ""
+
+#: FormAcercaDE.form:94
+msgid "Acerca de..."
+msgstr ""
+
+#: FormAcercaDE.form:101
+msgid "Autores: Antonio Sánchez y Julio Sánchez"
+msgstr ""
+
+#: FormAcercaDE.form:109
+msgid "http://minino.galpon.org/"
+msgstr ""
+
+#: FormAcercaDE.form:117
+msgid "http://www.jsbsan.blogspot.com"
+msgstr ""
+
+#: FormAcercaDE.form:134
+msgid "Ayuda para saber usar la teclas"
+msgstr ""
+
+#: FormAcercaDE.form:138
+msgid "WebCam"
+msgstr ""
+
+#: FormAcercaDE.form:147 FormFondo.form:96
+msgid "Dispositivo:"
+msgstr ""
+
+#: FormAcercaDE.form:153 FormFondo.form:91
+msgid "/dev/video0"
+msgstr ""
+
+#: FormAcercaDE.form:158
+msgid "Guardar"
+msgstr ""
+
+#: FormAcercaDE.form:164
+msgid "ValueBox1"
+msgstr ""
+
+#: FormAcercaDE.form:169
+msgid "Refresco:"
+msgstr ""
+
+#: FormAcercaDE.form:173
+msgid "Letra y Subrayado"
+msgstr ""
+
+#: FormAcercaDE.form:178
+msgid "Ancho Letra:"
+msgstr ""
+
+#: FormAcercaDE.form:188
+msgid "Ancho Subrayador:"
+msgstr ""
+
+#: FormAcercaDE.form:196
+msgid "Numerador"
+msgstr ""
+
+#: FormAcercaDE.form:201
+msgid "Reiniciar contador del boton Numerador al cambiar de color"
+msgstr ""
+
+#: FormAcercaDE.form:206
+msgid "DIámetro circulo del botón Numerador:"
+msgstr ""
+
+#: FormAcercaDE.form:216
+msgid "Tamaño letra del circulo del Numerador:"
+msgstr ""
+
+#: FormAcercaDE.form:224
+msgid "Actualización"
+msgstr ""
+
+#: FormAcercaDE.form:229
+msgid "Comprobar si hay alguna actualización del programa"
+msgstr ""
+
+#: FormAcercaDE.form:230
+msgid "Buscar Actualización"
+msgstr ""
+
+#: FormAcercaDE.form:235
+msgid "Abrir archivo"
+msgstr ""
+
+#: FormAcercaDE.form:244
+msgid "Seleccione directorio a abrir:"
+msgstr ""
+
+#: FormAcercaDE.form:259
+msgid "Abrir"
+msgstr ""
+
+#: FormAcercaDE.form:263
+msgid "Guardar archivo "
+msgstr ""
+
+#: FormAcercaDE.form:272
+msgid "Seleccione directorio donde guardar el archivo:"
+msgstr ""
+
+#: FormAcercaDE.form:277
+msgid "Nombre:"
+msgstr ""
+
+#: FormAyuda.form:11
+msgid "Ayuda"
+msgstr ""
+
+#: FormAyuda.form:17
+msgid ""
+"<b>F1</b>: Ayuda (es esta pantalla)<br>\n"
+"<b>A</b>: Dibujar a mano alzada<br>\n"
+"<b>B</b>: Muestra u oculta la barra de herramientas<br>\n"
+"<b>C</b>: Coloca una chincheta en la posición del puntero del ratón<br>\n"
+"<b>E</b>:  Dibujar elipse<br>\n"
+"<b>F</b>: Dibujar flecha en linea recta<br>\n"
+"<b>G</b>: Dibujar a mano alzada terminando con una flecha<br>\n"
+"<b>L</b>: Dibujar linea<br>\n"
+"<b>P</b>: Aclara el fondo del rectángulo que definas<br>\n"
+"<b>M</b>: Marcador subrayador<br>\n"
+"<b>N</b>: Numerador<br>\n"
+"<b>R</b>: Dibujar rectángulo<br>\n"
+"<b>S</b>: Captura la pantalla para guardarla en un archivo de imagen<br>\n"
+"<b>Z</b>:   Captura una zona de la pantalla para guardarla en un archivo de "
+"image .jpg <br>\n"
+"<b>T</b>: Escribe texto<br>\n"
+"<b>Y</b>: Edita texto, seleccionando la primera letra en la pantalla.<br>\n"
+"<b>Tecla backspace o Retroceso:</b> Elimina el último elemento dibujado "
+"<br>\n"
+"<b>Tecla Supr:</b> Borrado de los elementos dibujados <br>\n"
+"<b>Tecla Esc</b> y <b>Doble Click:</b> Sale de la aplicación."
+msgstr ""
+
+#: FormAyuda.form:22 FormColor.form:45 FormEditarTexto.form:39
+#: FormFondo.form:54
+msgid "Aceptar"
+msgstr ""
+
+#: FormAyuda.form:35
+msgid "Teclas"
+msgstr ""
+
+#: FormColor.form:22 FormEditarTexto.form:24
+msgid "Color:"
+msgstr ""
+
+#: FormColor.form:34
+msgid "Opacidad:"
+msgstr ""
+
+#: FormColor.form:39 FormEditarTexto.form:45 FormFondo.form:48
+msgid "Cancelar"
+msgstr ""
+
+#: FormColor.form:51
+msgid "Ancho:"
+msgstr ""
+
+#: FormCuadroPropiedades.form:28
+msgid "Cerrar"
+msgstr ""
+
+#: FormEditarTexto.form:18
+msgid "Texto:"
+msgstr ""
+
+#: FormEditarTexto.form:34
+msgid "Tamaño:"
+msgstr ""
+
+#: FormEditarTexto.form:55
+msgid "TextBox1"
+msgstr ""
+
+#: FormFondo.form:27
+msgid "Renglones"
+msgstr ""
+
+#: FormFondo.form:32
+msgid "Cuadricula"
+msgstr ""
+
+#: FormFondo.form:37
+msgid "Imagen a elegir"
+msgstr ""
+
+#: FormFondo.form:81
+msgid "Fondo en blanco"
+msgstr ""
+
+#: FormFondo.form:86
+msgid "WebCam/Visor Documentos"
+msgstr ""
+
+#: ModuleComun.module:173
+msgid "Imagen guardada en el portapapeles"
+msgstr ""
+
+#: ModuleUpdate.module:20
+msgid "No ha sido posible conectarse al servidor"
+msgstr ""
+
+#: ModuleUpdate.module:20
+msgid "No puedo comprobar si hay nueva versión"
+msgstr ""
+
+#: ModuleUpdate.module:33
+msgid "El archivo de versión no es para este programa"
+msgstr ""
+
+#: ModuleUpdate.module:36
+msgid "Existe una nueva versión"
+msgstr ""
+
+#: ModuleUpdate.module:36
+msgid "Programa:"
+msgstr ""
+
+#: ModuleUpdate.module:36
+msgid "Versión encontrada:"
+msgstr ""
+
+#: ModuleUpdate.module:36
+msgid "Mejoras:"
+msgstr ""
+
+#: ModuleUpdate.module:36
+msgid "Dirección Url de descarga:"
+msgstr ""
+
+#: ModuleUpdate.module:37
+msgid "Ir a la página de descarga"
+msgstr ""
+
+#: ModuleUpdate.module:37
+msgid "No actualización"
+msgstr ""
+
+#: ModuleUpdate.module:44
+msgid "La versión actual:"
+msgstr ""
+
+#: ModuleUpdate.module:44
+msgid "es igual o superior que la que hay en el servidor"
+msgstr ""
+
+#: ModuleUpdate.module:44
+msgid "No necesita actualizarla"
+msgstr ""
+
+#: UnitTest.class:42
+msgid "Assertion failed."
+msgstr ""
+
+#: _UnitTestLauncher.module:30
+msgid "The project must be run from source to start the unit tests."
+msgstr ""
+
+#: _UnitTestLauncher.module:61
+msgid "Found unit test : &1"
+msgstr ""
+
+#: _UnitTestLauncher.module:102
+msgid "Starting test #&1 on process #&2 ..."
+msgstr ""
+
+#: _UnitTestLauncher.module:117
+msgid "Received data from task #&1."
+msgstr ""
+
+#: _UnitTestLauncher.module:144
+msgid "Received error from test #&1 (task #&2) :"
+msgstr ""
+
+#: _UnitTestLauncher.module:161
+msgid "Task #&1 terminated."
+msgstr ""
+
+#: _UnitTestLauncher.module:165
+msgid "Test #&1 (task #&2) terminated unexpectedly !"
+msgstr ""
+
+#: _UnitTestLauncher.module:191
+msgid "Test &1 (#&2) succeeded"
+msgstr ""
+
+#: _UnitTestLauncher.module:193
+msgid "Test &1 (#&2) failed"
+msgstr ""
+
+#: _UnitTestLauncher.module:194
+msgid "\t&1 failed due to an unexpected error."
+msgstr ""
+
+#: _UnitTestLauncher.module:195
+msgid "\tReason: &1"
+msgstr ""
+
+#: _UnitTestLauncher.module:197
+msgid "\tNo stack trace available."
+msgstr ""
+
+#: _UnitTestLauncher.module:199
+msgid ""
+"\tStack trace : \n"
+"\t\t&1"
+msgstr ""
+
+#: _UnitTestLauncher.module:204
+msgid "\tStandard output :"
+msgstr ""
+
+#: _UnitTestLauncher.module:216
+msgid "&1 tests finished. &2 sucessful tests, &3 failed tests."
+msgstr ""

@@ -4,8 +4,9 @@ Inherits Dibujo
 
 Private ArrayCoord As New Point[]
 Private tiempos As New Float[] 'guandro en formato float
+Private Ruptura As New Boolean[] 'para puntos de ruptura entre polilineas
 
-Private paso As Integer = 5
+Private paso As Integer = 2
 Private Dashes As Float[] = [5.0, 1.0, 1.0, 1.0]  'skip
 
 Private dx As Integer
@@ -32,7 +33,19 @@ Public Sub _new(...)
   horaInicio = Param[2] 'hora donde empiezo el dibujo
   tiempos.Add(0) 'es el primer punto tiempo 0
   TiempoInicial = Now
+  Ruptura.Add(True)
+  
   ArrayCoord.Add(puntoTmp)
+  
+End
+
+Public Sub dibujaLineaPunteada()
+  
+  Paint.LineCap = Paint.LineCapButt
+  Paint.LineWidth = 3
+  Paint.Dash = Dashes
+  Paint.DashOffset = -5
+  Paint.Brush = Paint.Color(Color.RGB(0, 0, 0))
   
 End
 
@@ -47,16 +60,18 @@ Public Sub dibuja()
   Endif
   
   If Super.getColor() = 0 Then
-    Paint.LineCap = Paint.LineCapButt
-    Paint.LineWidth = 3
-    Paint.Dash = Dashes
-    Paint.DashOffset = -5
-    Paint.Brush = Paint.Color(Color.RGB(0, 0, 0))
+    
     'dibujando linea puntos...
+    dibujaLineaPunteada()
     Paint.MoveTo(ArrayCoord[0].x, ArrayCoord[0].y)
     For a = 1 To ArrayCoord.Max - 1
       
-      Paint.LineTo(ArrayCoord[a + 1].x, ArrayCoord[a + 1].y)
+      If Ruptura[a + 1] = False Then 
+        Paint.LineTo(ArrayCoord[a + 1].x, ArrayCoord[a + 1].y)
+      Else
+        Paint.MoveTo(ArrayCoord[a + 1].x, ArrayCoord[a + 1].y)
+      Endif
+      
     Next
     
   Else
@@ -77,8 +92,13 @@ Public Sub dibuja()
         
         'Print tiempos[a + 1], Now, InicioDibujando, DateDiff(InicioDibujando, Now, gb.Millisecond)
         If tiempos[a + 1] < DateDiff(InicioDibujando, Now, gb.Millisecond) Then 
-          Paint.Brush = Paint.Color(Color.pink)
-          Paint.LineTo(ArrayCoord[a + 1].x, ArrayCoord[a + 1].y)
+          dibujaLineaPunteada()
+          Paint.Brush = Paint.Color(Color.pink) 'de color rosa
+          If Ruptura[a + 1] = False Then 
+            Paint.LineTo(ArrayCoord[a + 1].x, ArrayCoord[a + 1].y)
+          Else
+            Paint.MoveTo(ArrayCoord[a + 1].x, ArrayCoord[a + 1].y)
+          Endif
           
         Else
           Break
@@ -86,7 +106,11 @@ Public Sub dibuja()
         Endif
         
       Else
-        Paint.LineTo(ArrayCoord[a + 1].x, ArrayCoord[a + 1].y)
+        If Ruptura[a + 1] = False Then 
+          Paint.LineTo(ArrayCoord[a + 1].x, ArrayCoord[a + 1].y)
+        Else
+          Paint.MoveTo(ArrayCoord[a + 1].x, ArrayCoord[a + 1].y)
+        Endif
       Endif
       
     Next
@@ -127,7 +151,30 @@ Public Sub Add(x As Integer, y As Integer)
     puntoTmp.x = x
     puntoTmp.y = y
     ArrayCoord.Add(puntoTmp)
+    Ruptura.Add(False)
     tiempos.Add(DateDiff(TiempoInicial, Now, gb.Millisecond))
+  Endif
+  
+End
+
+Public Sub AddRuptura(x As Integer, y As Integer)
+  
+  Dim puntoTmp As New Point
+  Dim tiempoDiferencial As Float
+  
+  Dim dist As Integer
+  
+  If x < 10 And y < 10 Then Return 'corregir error de pizarra
+  
+  dist = Sqr((x - ArrayCoord[ArrayCoord.max].x) ^ 2 + (y - ArrayCoord[ArrayCoord.max].y) ^ 2)
+  If dist > paso Then
+    puntoTmp.x = x
+    puntoTmp.y = y
+    ArrayCoord.Add(puntoTmp)
+    tiempoDiferencial = DateDiff(TiempoInicial, Now, gb.Millisecond)
+    Ruptura.Add(True)
+    tiempos.Add(tiempoDiferencial)
+    
   Endif
   
 End
@@ -239,6 +286,7 @@ Public Sub guardar() As String
     contenido &= Str$(ArrayCoord[a].x) & "|"
     contenido &= Str$(ArrayCoord[a].y) & "|"
     contenido &= Str$(tiempos[a]) & "|" 'añadido para guardar los tiempos
+    contenido &= Str$(Ruptura[a]) & "|" 'añadido para guardar si es o no punto de ruptura
   Next
   Return contenido
   
@@ -256,10 +304,11 @@ Public Function abrir(Arraylinea As String[]) As Boolean
     hsemitransparente = Val(Arraylinea[5])
     ArrayCoord.Clear()
     tiempos.Clear()
-    For a = 6 To Arraylinea.max - 1 Step 3
+    For a = 6 To Arraylinea.max - 1 Step 4 'leo de 4 en 4 (x,y, y tiempo,ruptura)
       pto = New Point(Arraylinea[a], Arraylinea[a + 1])
       ArrayCoord.Add(pto)
       tiempos.Add(Arraylinea[a + 2])
+      Ruptura.Add(convertirBinario(Arraylinea[a + 3]))
     Next
     
     Return True
@@ -281,5 +330,12 @@ Private Sub activarMovimiento_Write(Value As Boolean)
   hactivarMovimiento = value
   DibujandoActivo = True
   InicioDibujando = Now
+  
+End
+
+Private Sub convertirBinario(cadena As String) As Boolean
+  
+  If cadena = "True" Then Return True
+  Return False
   
 End

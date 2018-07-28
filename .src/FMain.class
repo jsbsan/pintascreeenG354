@@ -84,6 +84,8 @@ Public WebcamRediY As Integer
 
 Private tmpImagen As Image
 Private activadoMovimiento As Boolean = False
+Private dibujandoManoAlzadaMov As Boolean = False
+Private PuntoRuptura As Boolean = False
 
 Public Sub _new()
   
@@ -332,225 +334,189 @@ Public Sub DrawingArea1_MouseDown()
     mouseestuvoY = Mouse.Y
     'debug "Coordenadas al pulsar ratón", mouseinicioX, mouseinicioY
     
-    If dibuja = "TomaCapturaZona" Then
-      rectZona = New RectPunteado(Mouse.x, Mouse.y)
-      ultimorectZona = rectZona
-      figuras.Add(rectZona)
-      dibuja = "TomaCapturaZonaUp"
-      
-    Endif
-    
-    If dibuja = "EmborronarTomaCapturaZona" Then
-      rectZona = New RectPunteado(Mouse.x, Mouse.y)
-      ultimorectZona = rectZona
-      figuras.Add(rectZona)
-      dibuja = "EmborronarTomaCapturaZonaUp"
-      
-    Endif
-    
-    If dibuja = "lineaInicio" Then
-      ltmp = New Linea(mouseinicioX, mouseinicioY)
-      ultimaLinea = ltmp
-      figuras.Add(ltmp)
-      dibuja = "linea"
-      
-    Endif
-    
-    If dibuja = "texto" Then
-      FrameTexto.x = Mouse.X
-      FrameTexto.y = Mouse.y
-      FrameTexto.tag = [Mouse.x, Mouse.y]
-      If ColorButtonColorBotonTexto.Value = 0 Then
-        ColorButtonColorBotonTexto.Value = ColorButtonLineas.value
-      Endif
-      FrameTexto.visible = True
-      FrameTexto.SetFocus()
-      Return
-    Endif
-    
-    If dibuja = "Numerador" Then
-      If Mouse.Left Then
-        'se ha pulsado el boton izquierdo, el contador sigue contando
-        ContandorNumerador += 1
-      Endif
-      
-      nume = New Numerador(Mouse.x, Mouse.y, ContandorNumerador, colorActual, TamanoLetraNumerador, Me.diametro)
-      figuras.Add(nume)
-      
-    Endif
-    
-    If dibuja = "elipseInicio" Then
-      elipseTmp = New Elipse(mouseinicioX, mouseinicioY)
-      ultimoElipse = elipseTmp
-      figuras.add(elipseTmp)
-      dibuja = "elipseUP"
-      Return
-    Endif
-    
-    If dibuja = "rectanguloInicio" Then
-      rectTmp = New Rectangulo(mouseinicioX, mouseinicioY, colorActual)
-      ultimorectangulo = rectTmp
-      figuras.Add(rectTmp)
-      'debug "añadido rectangulo inicial"
-      dibuja = "rectanguloUP"
-      Return
-    Endif
-    
-    If dibuja = "oscurece" Then
-      
-      oscureceTmp = New Oscurece(mouseinicioX, mouseinicioY)
-      ultimoOscurece = oscureceTmp
-      figuras.Add(oscureceTmp)
-      Return
-    Endif
-    
-    If dibuja = "aclara" Then
-      ' rectangulo punteado para ver zona que quiere aclarar...
-      rectZona = New RectPunteado(mouseinicioX, mouseinicioY)
-      ultimorectZona = rectZona
-      figuras.Add(rectZona)
-      
-      'aclara
-      aclaraTmp = New Aclara(mouseinicioX, mouseinicioY)
-      aclaraTmp.setImagen(Image.Load(RutaImagenfondo))
-      ultimoAclara = aclaraTmp
-      figuras.Add(aclaraTmp)
-      capaGrisTmp = figuras[0]
-      capaGrisTmp.actualzaVisibilidad(1)
-      Return
-    Endif
-    
-    If dibuja = "flecha" Then
-      'debug "creo flecha"
-      fle = New Flecha(mouseinicioX, mouseinicioY)
-      
-      figuras.Add(fle)
-      ultimaFlecha = fle
-      Return
-    Endif
-    
-    If dibuja = "manoalzada" Then
-      'creo una mano alzada temporal...en movimiento...
-      manoalzadaTmp = New ManoAlzada(Mouse.x, Mouse.y)
-      'debug "creando mano alzada"
-      figuras.Add(manoalzadaTmp)
-      ultmaManoAlzada = manoalzadaTmp
-      Wait 0.01
-      Return
-    Endif
-    
-    If dibuja = "manoalzadaMovimiento" Then 
-      'creo una mano alzada temporal...
-      
-      manoalzadaMovimientoTmp = New ManoAlzadaMov(Mouse.x, Mouse.y, Now)
-      'debug "creando mano alzada"
-      figuras.Add(manoalzadaMovimientoTmp)
-      ultmaManoAlzadaMov = manoalzadaMovimientoTmp
-      Wait 0.01
-      Return
-    Endif
-    
-    If dibuja = "manoalzadaFlecha" Then
-      'creo una mano alzada temporal...
-      manoalzadaTmpFlecha = New ManoAlzadaFlecha(Mouse.x, Mouse.y)
-      figuras.Add(manoalzadaTmpFlecha)
-      ultmaManoAlzadaFlecha = manoalzadaTmpFlecha
-      Return
-    Endif
-    
-    If dibuja = "subrayar" Then
-      'creo una subrayador
-      subrayadorTmp = New Subrayador(Mouse.x, Mouse.y)
-      figuras.Add(subrayadorTmp)
-      ultmaSubrayador = subrayadorTmp
-      Return
-    Endif
-    
-    If dibuja = "EditaTexto" Then
-      'con las coordenas que tengo, averiguo que hay un texto cerca...
-      text = ModuleComun.BuscarTexto(figuras, mouse.x, Mouse.y)
-      If IsNull(text) Then
-      Else
-        text.editar()
-      Endif
-      
-      dibuja = ""
-      Return
-    Endif
-    
-    If dibuja = "desplazaTexto" Then
-      
-      text = ModuleComun.BuscarTexto(figuras, mouse.x, Mouse.y)
-      If IsNull(text) Then
-        'no hago nada
-        dibuja = ""
-      Else
-        'no hago nada, dejo dibuja en modo "desplazaTexto"
-        ultimoText = text
-      Endif
-      ' Debug text
-      'dibuja
-    Endif
-    
-    If dibuja = "desplazaObjeto" Then
-      dibujoDesplazamiento = ModuleComun.BuscarObjeto(figuras, Mouse.x, Mouse.y)
-      If IsNull(dibujoDesplazamiento) Then
-        'no hago nada
-        dibuja = ""
-      Else
-        ultimoDesplazamiento = dibujoDesplazamiento
-        '      Print dibuja, dibujoDesplazamiento
-      Endif
-    Endif
-    
-    If dibuja = "propiedades" Then
-      dibujoDesplazamiento = ModuleComun.BuscarObjeto(figuras, Mouse.x, Mouse.y)
-      If IsNull(dibujoDesplazamiento) Then
-        'no hago nada
-        dibuja = ""
-      Else
-        ''TODO: nota o comentario: mostrar propiedades del objeto seleccionado....
-        dibujoDesplazamiento.mostrarPropiedades()
-        dibuja = ""
-      Endif
-    Endif
-    
-    If dibuja = "borradoObjetoSeñalado" Then
-      
-      If figuras.count > 1 Then
-        dibujoDesplazamiento = ModuleComun.BuscarObjeto(figuras, Mouse.x, Mouse.y)
-        If IsNull(dibujoDesplazamiento) Then Return
-        If Object.Class(dibujoDesplazamiento).name = "Numerador" Then
-          ContandorNumerador -= 1
+    Select Case dibuja
+      Case "TomaCapturaZona" 
+        rectZona = New RectPunteado(Mouse.x, Mouse.y)
+        ultimorectZona = rectZona
+        figuras.Add(rectZona)
+        dibuja = "TomaCapturaZonaUp"
+        
+      Case "EmborronarTomaCapturaZona" 
+        rectZona = New RectPunteado(Mouse.x, Mouse.y)
+        ultimorectZona = rectZona
+        figuras.Add(rectZona)
+        dibuja = "EmborronarTomaCapturaZonaUp"
+        
+      Case "lineaInicio" 
+        ltmp = New Linea(mouseinicioX, mouseinicioY)
+        ultimaLinea = ltmp
+        figuras.Add(ltmp)
+        dibuja = "linea"
+        
+      Case "texto" 
+        FrameTexto.x = Mouse.X
+        FrameTexto.y = Mouse.y
+        FrameTexto.tag = [Mouse.x, Mouse.y]
+        If ColorButtonColorBotonTexto.Value = 0 Then
+          ColorButtonColorBotonTexto.Value = ColorButtonLineas.value
         Endif
-        '  Print Object.Class(figuras[figuras.max])
-        'debug figuras.Count
-        '  If Object.Class(dibujoDesplazamiento).name = "Aclara" Then
-        '  figuraExtraida = figuras[0]
-        '  capagristmp = figuraExtraida
-        ' capagristmp.actualzaVisibilidad(-1)
-        '  Endif
-        figuras.Extract(figuras.Find(dibujoDesplazamiento))
+        FrameTexto.visible = True
+        FrameTexto.SetFocus()
+        Return
         
+      Case "Numerador" 
+        If Mouse.Left Then
+          'se ha pulsado el boton izquierdo, el contador sigue contando
+          ContandorNumerador += 1
+        Endif
+        
+        nume = New Numerador(Mouse.x, Mouse.y, ContandorNumerador, colorActual, TamanoLetraNumerador, Me.diametro)
+        figuras.Add(nume)
+        
+      Case "elipseInicio" 
+        elipseTmp = New Elipse(mouseinicioX, mouseinicioY)
+        ultimoElipse = elipseTmp
+        figuras.add(elipseTmp)
+        dibuja = "elipseUP"
+        Return
+      Case "rectanguloInicio" 
+        rectTmp = New Rectangulo(mouseinicioX, mouseinicioY, colorActual)
+        ultimorectangulo = rectTmp
+        figuras.Add(rectTmp)
+        'debug "añadido rectangulo inicial"
+        dibuja = "rectanguloUP"
+        Return
+      Case "oscurece" 
+        
+        oscureceTmp = New Oscurece(mouseinicioX, mouseinicioY)
+        ultimoOscurece = oscureceTmp
+        figuras.Add(oscureceTmp)
+        Return
+      Case "aclara" 
+        ' rectangulo punteado para ver zona que quiere aclarar...
+        rectZona = New RectPunteado(mouseinicioX, mouseinicioY)
+        ultimorectZona = rectZona
+        figuras.Add(rectZona)
+        
+        'aclara
+        aclaraTmp = New Aclara(mouseinicioX, mouseinicioY)
+        aclaraTmp.setImagen(Image.Load(RutaImagenfondo))
+        ultimoAclara = aclaraTmp
+        figuras.Add(aclaraTmp)
+        capaGrisTmp = figuras[0]
+        capaGrisTmp.actualzaVisibilidad(1)
+        Return
+      Case "flecha" 
+        'debug "creo flecha"
+        fle = New Flecha(mouseinicioX, mouseinicioY)
+        
+        figuras.Add(fle)
+        ultimaFlecha = fle
+        Return
+      Case "manoalzada" 
+        'creo una mano alzada temporal...en movimiento...
+        manoalzadaTmp = New ManoAlzada(Mouse.x, Mouse.y)
+        'debug "creando mano alzada"
+        figuras.Add(manoalzadaTmp)
+        ultmaManoAlzada = manoalzadaTmp
+        Wait 0.01
+        Return
+      Case "manoalzadaMovimiento" 
+        'creo una mano alzada temporal...
+        If dibujandoManoAlzadaMov = False Then 
+          manoalzadaMovimientoTmp = New ManoAlzadaMov(Mouse.x, Mouse.y, Now)
+          'debug "creando mano alzada"
+          figuras.Add(manoalzadaMovimientoTmp)
+          ultmaManoAlzadaMov = manoalzadaMovimientoTmp
+          dibujandoManoAlzadaMov = True
+          
+        Endif
+        PuntoRuptura = True
+        Wait 0.01
+      Case "manoalzadaFlecha" 
+        'creo una mano alzada temporal...
+        manoalzadaTmpFlecha = New ManoAlzadaFlecha(Mouse.x, Mouse.y)
+        figuras.Add(manoalzadaTmpFlecha)
+        ultmaManoAlzadaFlecha = manoalzadaTmpFlecha
+        Return
+      Case "subrayar" 
+        'creo una subrayador
+        subrayadorTmp = New Subrayador(Mouse.x, Mouse.y)
+        figuras.Add(subrayadorTmp)
+        ultmaSubrayador = subrayadorTmp
+        Return
+      Case "EditaTexto" 
+        'con las coordenas que tengo, averiguo que hay un texto cerca...
+        text = ModuleComun.BuscarTexto(figuras, mouse.x, Mouse.y)
+        If IsNull(text) Then
+        Else
+          text.editar()
+        Endif
+        
+        dibuja = ""
+        Return
+      Case "desplazaTexto" 
+        text = ModuleComun.BuscarTexto(figuras, mouse.x, Mouse.y)
+        If IsNull(text) Then
+          'no hago nada
+          dibuja = ""
+        Else
+          'no hago nada, dejo dibuja en modo "desplazaTexto"
+          ultimoText = text
+        Endif
+        ' Debug text
+        'dibuja
+      Case "desplazaObjeto" 
+        dibujoDesplazamiento = ModuleComun.BuscarObjeto(figuras, Mouse.x, Mouse.y)
+        If IsNull(dibujoDesplazamiento) Then
+          'no hago nada
+          dibuja = ""
+        Else
+          ultimoDesplazamiento = dibujoDesplazamiento
+          '      Print dibuja, dibujoDesplazamiento
+        Endif
+      Case "propiedades" 
+        dibujoDesplazamiento = ModuleComun.BuscarObjeto(figuras, Mouse.x, Mouse.y)
+        If IsNull(dibujoDesplazamiento) Then
+          'no hago nada
+          dibuja = ""
+        Else
+          ''TODO: nota o comentario: mostrar propiedades del objeto seleccionado....
+          dibujoDesplazamiento.mostrarPropiedades()
+          dibuja = ""
+        Endif
+      Case "borradoObjetoSeñalado" 
+        If figuras.count > 1 Then
+          dibujoDesplazamiento = ModuleComun.BuscarObjeto(figuras, Mouse.x, Mouse.y)
+          If IsNull(dibujoDesplazamiento) Then Return
+          If Object.Class(dibujoDesplazamiento).name = "Numerador" Then
+            ContandorNumerador -= 1
+          Endif
+          '  Print Object.Class(figuras[figuras.max])
+          'debug figuras.Count
+          '  If Object.Class(dibujoDesplazamiento).name = "Aclara" Then
+          '  figuraExtraida = figuras[0]
+          '  capagristmp = figuraExtraida
+          ' capagristmp.actualzaVisibilidad(-1)
+          '  Endif
+          figuras.Extract(figuras.Find(dibujoDesplazamiento))
+          
+          DrawingArea1.Refresh()
+          
+        Endif
+      Case "chincheta" 
+        If InStr(ModuleComun.ChinchetaRuta, "chinchetas/") = 0 Then
+          tmpImagen = Image.Load(ModuleComun.ChinchetaRuta)
+          chin = New Chincheta(Mouse.x, Mouse.y, tmpImagen.w, tmpImagen.h)
+        Else
+          chin = New Chincheta(Mouse.x, Mouse.y)
+        Endif
+        
+        chin.icono(ModuleComun.ChinchetaRuta)
+        figuras.Add(chin)
         DrawingArea1.Refresh()
-        
-      Endif
-    Endif
-    If dibuja = "chincheta" Then
-      If InStr(ModuleComun.ChinchetaRuta, "chinchetas/") = 0 Then
-        tmpImagen = Image.Load(ModuleComun.ChinchetaRuta)
-        chin = New Chincheta(Mouse.x, Mouse.y, tmpImagen.w, tmpImagen.h)
-        
-      Else
-        chin = New Chincheta(Mouse.x, Mouse.y)
-        
-      Endif
-      
-      chin.icono(ModuleComun.ChinchetaRuta)
-      figuras.Add(chin)
-      DrawingArea1.Refresh()
-      Return
-    Endif
+        Return
+    End Select
   Endif
   
 End
@@ -577,84 +543,59 @@ Public Sub DrawingArea1_MouseUp()
     'debug "Coordenadas al LEVANTAR ratón", mousefinalX, mousefinalY
   Endif
   
-  If dibuja = "rectanguloUP" Then
-    dibuja = "rectangulo"
-  Endif
+  Select Case dibuja
+    Case "rectanguloUP"
+      dibuja = "rectangulo"    
+    Case "elipseUP" 
+      dibuja = "elipse"
+    Case "TomaCapturaZonaUp" 
+      'borrado de ultima figura...
+      figuras.Pop()
+      DrawingArea1.Refresh()
+      
+      ModuleComun.TomarFotoParcial(mouseinicioX + Me.x, mouseinicioY + Me.y, Mouse.x + Me.x, Mouse.y + Me.y, VBox1) ''añado situacion del formulario para el caso de que halla barras
+      
+      dibuja = dibujoAnterior
+    Case "EmborronarTomaCapturaZonaUp" 
+      'borrado de ultima figura...
+      figuras.Pop()
+      DrawingArea1.Refresh()
+      
+      xmin = Min(mouseinicioX, Mouse.x) + 16
+      ymin = Min(mouseinicioY, Mouse.y) + 16
+      
+      chin = New Chincheta(xmin, ymin)
+      chin.icono(ModuleComun.EmborronarTomarFotoParcial(mouseinicioX + Me.x, mouseinicioY + Me.y, Mouse.x + Me.x, Mouse.y + Me.y, VBox1))
+      figuras.add(chin, 2)
+      DrawingArea1.Refresh()
+      dibuja = "EmborronarTomaCapturaZona" 'para que vuelva a emborronar mas zonas, sin tener que volver a pulsar el boton de emborronado
+    Case "flecha" 
+      'debug "tramo final"
+      mousefinalX = Mouse.X
+      mousefinalY = Mouse.Y
+      dibuja = "flechaup"
+    Case "manoalzada" 
+      dibuja = "manoalzadaup"
+      'Case "manoalzadaMovimiento" 'version 0.71
+      '  dibuja = "manoalzadaMovimientoup"
+    Case "manoalzadaFlecha" 
+      dibuja = "manoalzadaFlechaFinal"
+    Case "subrayar" 
+      dibuja = "subrayadorup"
+    Case "linea" 
+      dibuja = "lineaup"
+      mousefinalX = Mouse.X
+      mousefinalY = Mouse.Y
+    Case "desplazaTexto" 
+      ultimoText.setX(mousefinalX)
+      ultimoText.sety(mousefinalY)
+    Case "desplazaObjeto" 
+      ultimoDesplazamiento.desplaza(mousefinalX, mousefinalY)
+    Case "aclara" 
+      dibuja = "aclaraup"
+      
+  End Select
   
-  If dibuja = "elipseUP" Then
-    dibuja = "elipse"
-  Endif
-  
-  If dibuja = "TomaCapturaZonaUp" Then
-    'borrado de ultima figura...
-    figuras.Pop()
-    DrawingArea1.Refresh()
-    
-    ModuleComun.TomarFotoParcial(mouseinicioX + Me.x, mouseinicioY + Me.y, Mouse.x + Me.x, Mouse.y + Me.y, VBox1) ''añado situacion del formulario para el caso de que halla barras
-    
-    dibuja = dibujoAnterior
-  Endif
-  
-  If dibuja = "EmborronarTomaCapturaZonaUp" Then
-    'borrado de ultima figura...
-    figuras.Pop()
-    DrawingArea1.Refresh()
-    
-    xmin = Min(mouseinicioX, Mouse.x) + 16
-    ymin = Min(mouseinicioY, Mouse.y) + 16
-    
-    chin = New Chincheta(xmin, ymin)
-    chin.icono(ModuleComun.EmborronarTomarFotoParcial(mouseinicioX + Me.x, mouseinicioY + Me.y, Mouse.x + Me.x, Mouse.y + Me.y, VBox1))
-    figuras.add(chin, 2)
-    DrawingArea1.Refresh()
-    dibuja = "EmborronarTomaCapturaZona" 'para que vuelva a emborronar mas zonas, sin tener que volver a pulsar el boton de emborronado
-  Endif
-  
-  If dibuja = "flecha" Then
-    'debug "tramo final"
-    mousefinalX = Mouse.X
-    mousefinalY = Mouse.Y
-    dibuja = "flechaup"
-  Endif
-  
-  If dibuja = "manoalzada" Then
-    'debug "tramo final"
-    
-    dibuja = "manoalzadaup"
-  Endif
-  
-  If dibuja = "manoalzadaMovimiento" Then 
-    dibuja = "manoalzadaMovimientoup"
-  Endif
-  
-  If dibuja = "manoalzadaFlecha" Then
-    dibuja = "manoalzadaFlechaFinal"
-  Endif
-  
-  If dibuja = "subrayar" Then
-    dibuja = "subrayadorup"
-  Endif
-  
-  If dibuja = "linea" Then
-    dibuja = "lineaup"
-    mousefinalX = Mouse.X
-    mousefinalY = Mouse.Y
-    
-  Endif
-  
-  If dibuja = "desplazaTexto" Then
-    ultimoText.setX(mousefinalX)
-    ultimoText.sety(mousefinalY)
-  Endif
-  
-  If dibuja = "desplazaObjeto" Then
-    ultimoDesplazamiento.desplaza(mousefinalX, mousefinalY)
-    '  dibuja = "" ''NOTE: anulando dibuja desplaza objeto
-  Endif
-  
-  If dibuja = "aclara" Then
-    dibuja = "aclaraup"
-  Endif
   DrawingArea1.Refresh()
   
 End
@@ -669,9 +610,14 @@ Public Sub DrawingArea1_MouseMove()
         ultmaManoAlzada.Add(mouse.x, Mouse.y)
         DrawingArea1.Refresh()
       Case "manoalzadaMovimiento"
-        ultmaManoAlzadaMov.Add(Mouse.x, Mouse.y)
-        DrawingArea1.Refresh()
+        If PuntoRuptura = True Then 
+          ultmaManoAlzadaMov.AddRuptura(Mouse.x, Mouse.y)
+          PuntoRuptura = False
+        Else
+          ultmaManoAlzadaMov.Add(Mouse.x, Mouse.y)
+        Endif
         
+        DrawingArea1.Refresh()
       Case "manoalzadaFlecha"
         ultmaManoAlzadaFlecha.Add(Mouse.x, Mouse.y)
         DrawingArea1.Refresh()
@@ -679,11 +625,9 @@ Public Sub DrawingArea1_MouseMove()
         ultimoText.setX(mouse.x)
         ultimoText.sety(Mouse.y)
         DrawingArea1.Refresh()
-        
       Case "desplazaObjeto"
         ultimoDesplazamiento.desplaza(Mouse.x, Mouse.y)
         DrawingArea1.Refresh()
-        
       Case "rectanguloUP"
         ultimorectangulo.ptofinal(Mouse.x, Mouse.y)
         DrawingArea1.Refresh()
@@ -696,7 +640,6 @@ Public Sub DrawingArea1_MouseMove()
       Case "EmborronarTomaCapturaZonaUp"
         ultimorectZona.ptofinal(Mouse.x, Mouse.y)
         DrawingArea1.Refresh()
-        
       Case "linea"
         ultimaLinea.ptoDiseno(Mouse.x, Mouse.y)
         DrawingArea1.Refresh()
@@ -1701,6 +1644,14 @@ Public Sub ToolButtonManoPlay_Click()
   Dim dibTmp As Dibujo
   Dim AuxManoAlzadaMov As ManoAlzadaMov
   
+  'fin de dibujo de linea
+  If Not IsNull(ultmaManoAlzadaMov) Then 
+    dibuja = "manoalzadaMovimientoup" 'para que termine
+    dibujandoManoAlzadaMov = False
+    
+    DrawingArea1.Refresh()
+  Endif
+  'subir los botones
   subirLosDemas()
   
   'se activa la variable de clases manoalzadaMovimeinto que se dibujen...
@@ -1745,6 +1696,7 @@ Public Sub ToolButtonManoGrabar_Click()
   
   subirLosDemas()
   dibuja = "manoalzadaMovimiento" 
+  dibujandoManoAlzadaMov = False
   
 End
 

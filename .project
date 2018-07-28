@@ -3,7 +3,7 @@
 Title=pintaScreen
 Startup=Mmain
 Icon=pintaScreen.png
-Version=0.0.71
+Version=0.0.72
 Component=gb.image
 Component=gb.qt4
 Component=gb.form
@@ -24,7 +24,7 @@ Maintainer=Julio Sanchez Berro
 Address=jusabejusabe@gmail.com
 Url=http://www.jsbsan.blogspot.com
 License=General Public License
-PackageName=pintascreeng354-0.0.71
+PackageName=pintascreeng354-0.0.72
 CreateEachDirectory=1
 Packager=1
 Systems=debian

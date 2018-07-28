@@ -6,12 +6,10 @@ FMain=[1713]
 Count=0
 
 [DebugWindow]
-Count=2
-DebugWindow[1]="tiempos"
-DebugWindow[2]="Arraylinea"
+Count=0
 
 [DebugWindow/ArrayCoord]
-Geometry=[96,39,311,653]
+Geometry=[52,227,311,653]
 
 [DebugWindow/Arraylinea]
 Geometry=[45,71,254,712]
@@ -102,6 +100,9 @@ Geometry=[-3,26,210,210]
 
 [DebugWindow/Rectangulo]
 Geometry=[13,26,210,210]
+
+[DebugWindow/Ruptura]
+Geometry=[0,24,210,856]
 
 [DebugWindow/ToolButtonChincheta]
 Geometry=[-3,26,562,696]
@@ -200,7 +201,7 @@ Geometry=[14,40,415,495]
 Geometry=[2,26,210,210]
 
 [DebugWindow/tiempos]
-Geometry=[0,24,210,799]
+Geometry=[324,44,210,799]
 
 [DebugWindow/timerMovimiento]
 Geometry=[-1,24,210,210]
@@ -219,7 +220,8 @@ Geometry=[18,20,210,781]
 
 [OpenFile]
 File[1]=".src/FMain.form"
-File[2]=".src/FMain.class:1700.2"
+Active=2
+File[2]=".src/FMain.class:1648.55"
 File[3]=".src/rectangulo.class:326.33"
 File[4]=".src/RectPunteado.class:32.0"
 File[5]=".src/elipse.class:300.33"
@@ -230,15 +232,14 @@ File[9]=".src/Propiedades/FormCuadroPropiedades.class:356.109"
 File[10]=".src/Propiedades/ButtonBoxDobleTag.class:0.19"
 File[11]=".src/FormEditarTexto.form"
 File[12]=".src/FormEditarTexto.class:22.19"
-Active=13
-File[13]=".src/ModuleAbrirGuardar.module:136.0"
+File[13]=".src/ModuleAbrirGuardar.module:62.0"
 File[14]=".src/linea.class:34.0"
 File[15]=".src/ManoAlzadaFlecha.class:69.0"
 File[16]=".src/ManoAlzada.class:30.0"
 File[17]=".src/Mmain.module:22.2"
 File[18]=".src/FormAcercaDE.form"
 File[19]=".src/FormAcercaDE.class:204.2"
-File[20]=".src/Dibujo.class:53.0"
+File[20]=".src/Dibujo.class:25.0"
 File[21]=".src/Texto.class:122.27"
 File[22]=".src/Subrayador.class:193.0"
 File[23]=".src/Oscurece.class:94.33"
@@ -255,7 +256,7 @@ File[33]=".src/FormAyuda.form"
 File[34]=".src/ModuleComun.module:130.58"
 File[35]=".src/ModuleSonido.module:0.20"
 File[36]="lapiz.png"
-File[37]=".src/ManoAlzadaMov.class:251.41"
+File[37]=".src/ManoAlzadaMov.class:334.3"
 File[38]=".src/FormFondo.class:191.23"
 File[39]=".src/FormFondo.form"
 File[40]=".src/formularioAndando.form"

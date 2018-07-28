@@ -166,23 +166,23 @@ msgstr ""
 msgid " Webcam"
 msgstr ""
 
-#: FMain.class:270
+#: FMain.class:272
 msgid "¿realmente desea borrar todo lo dibujado?"
 msgstr ""
 
-#: FMain.class:270
+#: FMain.class:272
 msgid "Si, Borralo"
 msgstr ""
 
-#: FMain.class:270
+#: FMain.class:272
 msgid "No, cancela la orden"
 msgstr ""
 
-#: FMain.class:1547 FormFondo.class:209
+#: FMain.class:1490 FormFondo.class:209
 msgid "Problemas para obtener la imagen de la camara web,"
 msgstr ""
 
-#: FMain.class:1547 FormFondo.class:209
+#: FMain.class:1490 FormFondo.class:209
 msgid " pruebe con otra ruta de dispositivo /dev/video1, /dev/video2,"
 msgstr ""
 
